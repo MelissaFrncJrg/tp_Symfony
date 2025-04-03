@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recettes{% endblock %}
+
+{% block body %}
+    <h1>Liste des recettes</h1>
+
+    <ul>
+        {% for recipe in recipes %}
+            <li>
+                <strong>{{ recipe.title }}</strong><br>
+                {{ recipe.description|u.truncate(100, '...') }}
+            </li>
+        {% else %}
+            <li>Aucune recette trouvée 😢</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
