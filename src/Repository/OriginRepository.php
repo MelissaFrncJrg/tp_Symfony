@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Origin;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -31,6 +32,16 @@ class OriginRepository extends ServiceEntityRepository
             ->join('o.recipes', 'r')
             ->where('o.name = :name')
             ->setParameter('name', $originName)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAvailableOrigins(?User $user): array
+    {
+        return $this->createQueryBuilder('o')
+            ->where('o.isPublic = true')
+            ->orWhere('o.user = :user')
+            ->setParameter('user', $user)
             ->getQuery()
             ->getResult();
     }

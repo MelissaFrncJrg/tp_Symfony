@@ -24,6 +24,12 @@ class Tag
     #[ORM\ManyToMany(targetEntity: Recipe::class, mappedBy: 'tags')]
     private Collection $recipes;
 
+    #[ORM\Column]
+    private ?bool $isPublic = null;
+
+    #[ORM\ManyToOne(inversedBy: 'tags')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
@@ -69,6 +75,30 @@ class Tag
         if ($this->recipes->removeElement($recipe)) {
             $recipe->removeTag($this);
         }
+
+        return $this;
+    }
+
+    public function isPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): static
+    {
+        $this->isPublic = $isPublic;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

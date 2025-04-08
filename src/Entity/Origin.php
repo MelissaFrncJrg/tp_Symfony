@@ -24,6 +24,12 @@ class Origin
     #[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: 'origine')]
     private Collection $recipes;
 
+    #[ORM\ManyToOne(inversedBy: 'origins')]
+    private ?User $user = null;
+
+    #[ORM\Column]
+    private ?bool $isPublic = null;
+
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
@@ -72,6 +78,30 @@ class Origin
                 $recipe->setOrigine(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function isPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): static
+    {
+        $this->isPublic = $isPublic;
 
         return $this;
     }

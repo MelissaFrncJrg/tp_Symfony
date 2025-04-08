@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Tag;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -34,5 +35,15 @@ class TagRepository extends ServiceEntityRepository
             ->setParameter('label', $label)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    public function findAvailableTags(?User $user): array
+    {
+        return $this->createQueryBuilder('t')
+            ->where('t.isPublic = true')
+            ->orWhere('t.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
     }
 }

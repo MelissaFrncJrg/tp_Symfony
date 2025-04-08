@@ -9,7 +9,11 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Bienvenue sur mon livre de recettes</h1>
+    {% if app.user %}
+        <h1>Le livre de recettes de {{ app.user.username }}</h1>
+    {% else %}
+        <h1>Bienvenue sur mon livre de recettes</h1>
+    {% endif %}
 
     <h2>Les dernières recettes ajoutées:</h2>
     <ul>
