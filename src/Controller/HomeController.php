@@ -12,10 +12,10 @@ final class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(RecipeRepository $recipeRepository): Response
     {
-        $latestRecipes = $recipeRepository->findBy([], ['createdAt' => 'DESC'], 5);
+        $recipes = $recipeRepository->findBy([], ['id' => 'DESC'], 5);
 
         return $this->render('home/index.html.twig', [
-            'recipes' => $latestRecipes,
+            'recipes' => $recipes,
         ]);
     }
 }

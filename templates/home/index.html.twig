@@ -15,7 +15,9 @@
     <ul>
         {% for recipe in recipes %}
             <li>
-                <strong>{{ recipe.title }}</strong><br>
+                <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">
+                    <h3>{{ recipe.title }}</h3>
+                </a><br>
                 <em>{{ recipe.origin.name|default('') }}</em>
                 {{ recipe.description|u.truncate(80, '...') }}
             </li>
@@ -23,7 +25,6 @@
             <li>Aucune recette n'a été ajoutée pour le moment</li>
         {% endfor %}
     </ul>
-
-    <a href="{{ path('app_recipe_index') }}">Parcourir les recettes</a>
 </div>
+
 {% endblock %}
