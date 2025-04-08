@@ -1,6 +1,7 @@
 compose.yaml
 ###> symfony/framework-bundle ###
 .env
+.end.dev
 /.env.local
 /.env.local.php
 /.env.*.local
