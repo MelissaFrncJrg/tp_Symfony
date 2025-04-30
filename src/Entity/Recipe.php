@@ -41,7 +41,7 @@ class Recipe
     private ?string $steps = null;
 
     #[ORM\ManyToOne(inversedBy: 'recipes')]
-    private ?Origin $origine = null;
+    private ?Origin $origin = null;
 
     /**
      * @var Collection<int, Tag>
@@ -158,14 +158,14 @@ class Recipe
         return $this;
     }
 
-    public function getOrigine(): ?Origin
+    public function getOrigin(): ?Origin
     {
-        return $this->origine;
+        return $this->origin;
     }
 
-    public function setOrigine(?Origin $origine): static
+    public function setOrigin(?Origin $origin): static
     {
-        $this->origine = $origine;
+        $this->origin = $origin;
 
         return $this;
     }

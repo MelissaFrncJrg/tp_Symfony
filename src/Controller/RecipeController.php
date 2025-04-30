@@ -3,12 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Recipe;
+use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class RecipeController extends AbstractController
 {
@@ -35,4 +39,61 @@ final class RecipeController extends AbstractController
             'recipe' => $recipe,
         ]);
     }
+
+    #[Route('/recipe/new', name: 'app_recipe_new')]
+    public function new(Request $request, EntityManagerInterface $em, Security $security): Response
+    {
+        $recipe = new Recipe();
+
+        $form = $this->createForm(RecipeType::class, $recipe);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $security->getUser();
+
+            /** @var Recipe $recipe */
+            $recipe = $form->getData();
+
+            $recipe->setUser($user);
+            $recipe->setCreatedAt(new \DateTimeImmutable());
+            $recipe->setUpdatedAt(new \DateTimeImmutable());
+
+            $em->persist($recipe);
+            $em->flush();
+
+            return $this->redirectToRoute('app_recipe_index');
+        }
+            return $this->render('recipe/new.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/recipe/{id}/edit', name: 'app_recipe_edit')]
+    public function edit(Recipe $recipe, Request $request, EntityManagerInterface $em, TranslatorInterface $translator): Response
+{
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+            if ($recipe->getUser() !== $this->getUser()) {
+                throw $this->createAccessDeniedException(
+                    $translator->trans('error.recipe.not_owner')
+                );
+            }
+
+        $form = $this->createForm(RecipeType::class, $recipe);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $recipe->setUpdatedAt(new \DateTimeImmutable());
+
+            $em->flush();
+
+            return $this->redirectToRoute('app_recipe_show', ['id' => $recipe->getId()]);
+        }
+
+        return $this->render('recipe/edit.html.twig', [
+            'form' => $form->createView(),
+            'recipe' => $recipe,
+        ]);
+    }
+
 }

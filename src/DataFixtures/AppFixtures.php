@@ -20,7 +20,7 @@ class AppFixtures extends Fixture
             ->create(function() {
                 return [
                     'tags' => TagFactory::randomRange(1, 3),
-                    'origine' => OriginFactory::random(),
+                    'origin' => OriginFactory::random(),
                 ];
             });
     }

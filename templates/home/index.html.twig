@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}{{ 'home.title'|trans }}{% endblock %}
 
 {% block body %}
 <style>
@@ -9,13 +9,21 @@
 </style>
 
 <div class="example-wrapper">
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+    {% for message in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+
     {% if app.user %}
-        <h1>Le livre de recettes de {{ app.user.username }}</h1>
+        <h1>{{ 'home.heading.connected'|trans({'%username%': app.user.username}) }}</h1>
     {% else %}
-        <h1>Bienvenue sur mon livre de recettes</h1>
+        <h1>{{ 'home.heading.guest'|trans }}</h1>
     {% endif %}
 
-    <h2>Les dernières recettes ajoutées:</h2>
+    <h2>{{ 'home.latest'|trans }}</h2>
     <ul>
         {% for recipe in recipes %}
             <li>
@@ -26,9 +34,8 @@
                 {{ recipe.description|u.truncate(80, '...') }}
             </li>
         {% else %}
-            <li>Aucune recette n'a été ajoutée pour le moment</li>
+            <li>{{ 'home.empty'|trans }}</li>
         {% endfor %}
     </ul>
 </div>
-
 {% endblock %}

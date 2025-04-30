@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'recipe.new.title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ 'recipe.new.heading'|trans }}</h1>
+
+        {{ form_start(form) }}
+
+        <fieldset>
+            <legend>{{ 'recipe.section.general'|trans }}</legend>
+            {{ form_row(form.title) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.origin) }}
+            {{ form_row(form.tags) }}
+        </fieldset>
+
+        <fieldset>
+            <legend>{{ 'recipe.section.preparation'|trans }}</legend>
+            {{ form_row(form.ingredients) }}
+            {{ form_row(form.steps) }}
+        </fieldset>
+
+        <fieldset>
+            <legend>{{ 'recipe.section.details'|trans }}</legend>
+            {{ form_row(form.servings) }}
+            {{ form_row(form.cookingTime) }}
+        </fieldset>
+
+        <button class="btn btn-success" type="submit">{{ 'recipe.form.submit'|trans }}</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

@@ -21,7 +21,7 @@ class Origin
     /**
      * @var Collection<int, Recipe>
      */
-    #[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: 'origine')]
+    #[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: 'origin')]
     private Collection $recipes;
 
     #[ORM\ManyToOne(inversedBy: 'origins')]
@@ -64,7 +64,7 @@ class Origin
     {
         if (!$this->recipes->contains($recipe)) {
             $this->recipes->add($recipe);
-            $recipe->setOrigine($this);
+            $recipe->setOrigin($this);
         }
 
         return $this;
@@ -74,8 +74,8 @@ class Origin
     {
         if ($this->recipes->removeElement($recipe)) {
             // set the owning side to null (unless already changed)
-            if ($recipe->getOrigine() === $this) {
-                $recipe->setOrigine(null);
+            if ($recipe->getOrigin() === $this) {
+                $recipe->setOrigin(null);
             }
         }
 
@@ -105,4 +105,10 @@ class Origin
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->label ?? '';
+    }
+
 }

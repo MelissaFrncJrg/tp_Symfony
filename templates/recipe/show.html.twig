@@ -1,0 +1,28 @@
+{% block body %}
+<div class="recipe-detail">
+    <h1>{{ recipe.title }}</h1>
+    <p>
+        <strong>{{ 'recipe.origin'|trans }} :</strong>
+        {{ recipe.origin.name|default('recipe.origin.none'|trans) }}
+    </p>
+
+    <p>{{ recipe.description }}</p>
+
+    <p>
+        <strong>{{ 'recipe.tags'|trans }} :</strong>
+        {% for tag in recipe.tags %}
+            <span>{{ tag.label }}</span>{% if not loop.last %}, {% endif %}
+        {% else %}
+            {{ 'recipe.tags.none'|trans }}
+        {% endfor %}
+    </p>
+
+    <a href="{{ path('app_recipe_index') }}">← {{ 'recipe.back'|trans }}</a>
+
+    {% if app.user and app.user == recipe.user %}
+        <a class="btn btn-primary" href="{{ path('app_recipe_edit', {'id': recipe.id}) }}">
+            {{ 'recipe.form.update'|trans }}
+        </a>
+    {% endif %}
+</div>
+{% endblock %}

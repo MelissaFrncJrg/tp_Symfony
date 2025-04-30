@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recettes{% endblock %}
+{% block title %}{{ 'recipe.index.title'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Liste des recettes</h1>
+    <h1>{{ 'recipe.index.heading'|trans }}</h1>
 
     <ul>
         {% for recipe in recipes %}
@@ -12,7 +12,7 @@
                 {{ recipe.description|u.truncate(100, '...') }}
             </li>
         {% else %}
-            <li>Aucune recette trouvée 😢</li>
+            <li>{{ 'recipe.index.empty'|trans }}</li>
         {% endfor %}
     </ul>
 {% endblock %}

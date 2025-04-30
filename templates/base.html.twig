@@ -2,11 +2,9 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}{{ 'title.welcome'|trans }}{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
-
+        {% block stylesheets %}{% endblock %}
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
@@ -14,20 +12,26 @@
     <body>
         {% if app.user %}
             <header>
-                <h1>Le livre de recettes de {{ app.user.username }}</h1>
+                <h1>{{ 'header.user_book'|trans({'%username%': app.user.username}) }}</h1>
             </header>
         {% endif %}
-        <nav>
-            <ul>
+
+        <nav style="background: #eee; padding: 1rem;">
+            <ul style="list-style: none; display: flex; gap: 1rem; margin: 0; padding: 0;">
+                <li><a href="{{ path('app_home') }}">{{ 'nav.home'|trans }}</a></li>
+                <li><a href="{{ path('app_recipe_index') }}">{{ 'nav.recipes'|trans }}</a></li>
                 {% if app.user %}
-                    <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                    <li><a href="{{ path('app_recipe_new') }}">{{ 'nav.add_recipe'|trans }}</a></li>
+                    <li><a href="{{ path('app_logout') }}">{{ 'nav.logout'|trans }}</a></li>
                 {% else %}
-                    <li><a href="{{ path('app_login') }}">Se connecter</a></li>
-                    <li><a href="{{ path('app_register') }}">S’inscrire</a></li>
+                    <li><a href="{{ path('app_login') }}">{{ 'nav.login'|trans }}</a></li>
+                    <li><a href="{{ path('app_register') }}">{{ 'nav.register'|trans }}</a></li>
                 {% endif %}
             </ul>
         </nav>
 
-        {% block body %}{% endblock %}
+        <main style="padding: 2rem;">
+            {% block body %}{% endblock %}
+        </main>
     </body>
 </html>

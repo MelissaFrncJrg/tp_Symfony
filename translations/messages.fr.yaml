@@ -1,0 +1,65 @@
+title.welcome: "Bienvenue !"
+nav.home: "Accueil"
+nav.recipes: "Recettes"
+nav.add_recipe: "Ajouter une recette"
+nav.logout: "Se déconnecter"
+nav.login: "Se connecter"
+nav.register: "S’inscrire"
+header.user_book: "Le livre de recettes de %username%"
+
+login.title: Connexion
+login.logged_in_as: Connecté en tant que %user%
+login.logout: Se déconnecter
+login.heading: Veuillez vous connecter
+login.email: Adresse email
+login.password: Mot de passe
+login.remember_me: Se souvenir de moi
+login.submit: Connexion
+
+register.title: Inscription
+register.heading: Créez votre compte
+register.email: Adresse email
+register.username: Nom d'utilisateur
+register.password: Mot de passe
+register.submit: S’inscrire
+register.password.blank: Veuillez entrer un mot de passe.
+register.password.too_short: Le mot de passe doit contenir au moins {{ limit }} caractères.
+
+email.confirm.title: Bonjour ! Veuillez confirmer votre adresse e-mail
+email.confirm.instruction: Veuillez confirmer votre adresse e-mail en cliquant sur le lien suivant :
+email.confirm.link: Confirmer mon adresse e-mail
+email.confirm.expiration: Ce lien expirera dans {{ time }}.
+email.confirm.signature: À bientôt !
+
+home.title: Accueil
+home.heading.connected: Le livre de recettes de %username%
+home.heading.guest: Bienvenue sur mon livre de recettes
+home.latest: Les dernières recettes ajoutées :
+home.empty: Aucune recette n'a été ajoutée pour le moment
+
+recipe.form.title: Titre de la recette
+recipe.form.description: Description
+recipe.form.origin: Origine
+recipe.form.origin.placeholder: Sélectionnez une origine...
+recipe.form.tags: Tags
+recipe.form.ingredients: Ingrédients
+recipe.form.steps: Étapes
+recipe.form.servings: Nombre de personnes
+recipe.form.cooking_time: Temps de cuisson (minutes)
+recipe.form.update: Mettre à jour
+recipe.origin: Origine
+recipe.origin.none: Non renseignée
+recipe.tags: Tags
+recipe.tags.none: Aucun tag associé
+recipe.back: Retour aux recettes
+recipe.new.title: Nouvelle recette
+recipe.new.heading: Créer une recette
+recipe.form.submit: Enregistrer
+recipe.section.general: Informations générales
+recipe.section.preparation: Préparation
+recipe.section.details: Détails techniques
+recipe.index.title: Recettes
+recipe.index.heading: Liste des recettes
+recipe.index.empty: Aucune recette trouvée
+
+error.recipe.not_owner: "Vous ne pouvez modifier que vos propres recettes."
