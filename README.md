@@ -14,12 +14,18 @@ Ce projet est une application Symfony faite dans le cadre de mon bachelor. Elle 
 
 ## Liste des routes
 
-| Route               | Méthode  | Description                                                  |
-| ------------------- | -------- | ------------------------------------------------------------ |
-| `/recipes`          | GET      | Affiche la liste paginée des recettes                        |
-| `/recipes/{id}`     | GET      | Affiche le détail d’une recette                              |
-| `/recipe/new`       | GET/POST | Formulaire de création d’une recette + tags/origines         |
-| `/recipe/{id}/edit` | GET/POST | Formulaire d’édition d’une recette (propriétaire uniquement) |
+| Route                 | Méthode  | Description                                                            |
+| --------------------- | -------- | ---------------------------------------------------------------------- |
+| `/`                   | ANY      | Page d’accueil                                                         |
+| `/recipes`            | GET      | Affiche la liste paginée des recettes                                  |
+| `/recipes/{id}`       | GET      | Affiche le détail d’une recette                                        |
+| `/recipe/new`         | GET/POST | Formulaire de création d’une recette + tags/origines                   |
+| `/recipe/{id}/edit`   | GET/POST | Formulaire d’édition d’une recette (propriétaire uniquement)           |
+| `/recipe/{id}/delete` | POST     | Suppression d’une recette (propriétaire uniquement, avec confirmation) |
+| `/register`           | GET/POST | Inscription d’un utilisateur                                           |
+| `/verify/email`       | GET      | Vérification de l’email après inscription                              |
+| `/login`              | GET/POST | Connexion d’un utilisateur                                             |
+| `/logout`             | GET      | Déconnexion d’un utilisateur                                           |
 
 ## Formulaires intégrés
 

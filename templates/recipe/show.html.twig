@@ -17,6 +17,13 @@
 
 <div class="recipe-detail container">
 
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+
     <div class="recipe-meta">
         <p><strong>{{ 'recipe.origin'|trans }} :</strong> {{ recipe.origin.country|default('recipe.origin.none'|trans) }}</p>
         <p><strong>{{ 'recipe.servings'|trans }} :</strong> {{ recipe.servings ?? '—' }}</p>
@@ -72,6 +79,13 @@
             <a class="btn btn-primary" href="{{ path('app_recipe_edit', {'id': recipe.id}) }}">
                 {{ 'recipe.form.update'|trans }}
             </a>
+
+            <form class="recipe-form" method="post" action="{{ path('app_recipe_delete', {'id': recipe.id}) }}"
+                onsubmit="return confirm('{{ 'recipe.confirm_delete'|trans }}');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete_recipe_' ~ recipe.id) }}">
+                <button class="btn btn-danger">{{ 'recipe.delete'|trans }}</button>
+            </form>
+
         {% endif %}
     </div>
 </div>

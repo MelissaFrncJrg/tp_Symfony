@@ -143,6 +143,28 @@ final class RecipeController extends AbstractController
         ]);
     }
 
+    
+    #[Route('/recipe/{id}/delete', name: 'app_recipe_delete', methods: ['POST'])]
+    public function delete(Recipe $recipe, Request $request, EntityManagerInterface $em, TranslatorInterface $translator): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        if ($recipe->getUser() !== $this->getUser()) {
+            throw $this->createAccessDeniedException(
+                $translator->trans('error.recipe.not_owner')
+            );
+        }
+
+        if ($this->isCsrfTokenValid('delete_recipe_' . $recipe->getId(), $request->request->get('_token'))) {
+            $em->remove($recipe);
+            $em->flush();
+
+            $this->addFlash('success', $translator->trans('recipe.deleted'));
+        }
+
+        return $this->redirectToRoute('app_recipe_index');
+    }
+
     private function normalize(string $string): string
     {
         return iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', mb_strtolower(trim($string)));

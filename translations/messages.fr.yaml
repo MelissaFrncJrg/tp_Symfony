@@ -78,7 +78,12 @@ origin.new.title: Créer une  origine
 new.save: Enregistrer
 origin.duplicate.error: Cette origine existe déjà.
 origin.success: Origine ajoutée.
+tag.new.title: Nouveau tag
 tag.duplicate.error: Ce tag existe déjà.
 tag.success: Tag ajouté.
 
-tag.new.title: Nouveau tag
+recipe.confirm_delete: Cette action est irréversible, êtes-vous sûr de vouloir supprimer la recette?
+error.recipe.not_owner: Seul le créateur de la recette peut la supprimer
+recipe.delete: Supprimer
+recipe.deleted: Recette supprimée
+
