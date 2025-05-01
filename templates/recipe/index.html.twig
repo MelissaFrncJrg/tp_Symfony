@@ -4,24 +4,30 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('styles/recipes.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/index.css') }}">
 {% endblock %}
 
 {% block body %}
-<div class="recipe-list-container">
+<div class="home-container">
     <h1 class="recipe-list-title">{{ 'recipe.index.heading'|trans }}</h1>
 
     <ul class="recipe-list">
         {% for recipe in recipes %}
-            <li class="recipe-item">
-                <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}" class="recipe-link">
-                    <strong class="recipe-title">{{ recipe.title }}</strong><br>
-                    <span class="recipe-description">{{ recipe.description|u.truncate(100, '...') }}</span>
+            <li class="recipe-item" style="--recipe-image: url('{{ recipe.image }}')">
+                <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">
+                    <h3>{{ recipe.title }}</h3>
                 </a>
+                <em>{{ recipe.origin.name|default('') }}</em>
+                <p>{{ recipe.description|u.truncate(100, '...') }}</p>
             </li>
         {% else %}
             <li class="no-recipes">{{ 'recipe.index.empty'|trans }}</li>
         {% endfor %}
     </ul>
 </div>
+
+<div class="pagination-container">
+    {{ knp_pagination_render(recipes) }}
+</div>
+
 {% endblock %}

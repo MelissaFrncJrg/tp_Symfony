@@ -19,7 +19,9 @@ final class RecipeController extends AbstractController
     #[Route('/recipes', name: 'app_recipe_index')]
     public function index(RecipeRepository $recipeRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $query = $recipeRepository->createQueryBuilder('r')->getQuery();
+        $query = $recipeRepository->createQueryBuilder('r')
+            ->orderBy('r.createdAt', 'DESC')
+            ->getQuery();
 
         $recipes = $paginator->paginate(
             $query,
