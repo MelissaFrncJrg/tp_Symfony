@@ -21,7 +21,10 @@
             {{ form_row(form.title) }}
             {{ form_row(form.description) }}
             {{ form_row(form.origin) }}
-            {{ form_row(form.tags) }}
+            {{ form_row(form.tags, {
+                label: 'recipe.form.tags_multi'|trans
+            }) }}
+
         </fieldset>
 
         <fieldset class="preparation-section">

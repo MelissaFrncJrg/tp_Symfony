@@ -11,6 +11,33 @@
     <div class="recipe-form-container">
         <h1 class="recipe-form-title">{{ 'recipe.new.heading'|trans }}</h1>
 
+        <fieldset class="inline-forms">
+            <fieldset class="mini-form">
+                {{ form_start(originForm, {'action': path('app_recipe_new') ~ '#recipe-form'}) }}
+                    <div class="mini-form-inline">
+                        <h2>{{ 'origin.new.title'|trans }}</h2>
+                        <div class="input-wrap">
+                            {{ form_row(originForm.country, {'label': false}) }}
+                        </div>
+                        <button class="btn-mini" type="submit">{{ 'new.save'|trans }}</button>
+                    </div>
+                {{ form_end(originForm) }}
+            </fieldset>
+
+            <fieldset class="mini-form">
+                {{ form_start(tagForm, {'action': path('app_recipe_new') ~ '#recipe-form'}) }}
+                    <div class="mini-form-inline">
+                        <h2>{{ 'tag.new.title'|trans }}</h2>
+                        <div class="input-wrap">
+                            {{ form_row(tagForm.label, {'label': false}) }}
+                        </div>
+                        <button class="btn-mini" type="submit">{{ 'new.save'|trans }}</button>
+                    </div>
+                {{ form_end(tagForm) }}
+            </fieldset>
+        </fieldset>
+
+
         {{ form_start(form, {'attr': {'class': 'recipe-form'}}) }}
 
         <fieldset class="general-section">
@@ -18,7 +45,10 @@
             {{ form_row(form.title) }}
             {{ form_row(form.description) }}
             {{ form_row(form.origin) }}
-            {{ form_row(form.tags) }}
+            {{ form_row(form.tags, {
+                label: 'recipe.form.tags_multi'|trans
+            }) }}
+
         </fieldset>
 
         <fieldset class="preparation-section">

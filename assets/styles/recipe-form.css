@@ -112,18 +112,108 @@
   border: 1px solid #f0e0c0;
 }
 
+select[multiple] {
+  height: auto;
+  min-height: 10rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #cabfb4;
+  background-color: #fff;
+  font-family: "Montserrat", sans-serif;
+  color: #604652;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+select[multiple] option {
+  padding: 0.5rem;
+}
+
+.form-inline-field {
+  flex: 1;
+}
+
+.inline-forms {
+  gap: 2rem;
+  margin-bottom: 2rem;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.mini-form {
+  width: 95%;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mini-form-inline {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  width: auto;
+  flex-wrap: wrap;
+}
+
+.input-wrap {
+  flex: 1;
+  width: 100%;
+}
+
+.mini-form-inline .input-wrap input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mini-form-inline h2 {
+  font-size: 1.2rem;
+  display: block;
+  width: auto;
+  margin-bottom: 0;
+  font-family: "Playfair Display", serif;
+  color: #604652;
+  white-space: nowrap;
+  font-size: 1rem;
+  padding-right: 0.5rem;
+  line-height: 1.4;
+  min-width: fit-content;
+}
+
+.btn-mini {
+  background-color: #604652;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+  height: 42px;
+}
+
+.btn-mini:hover {
+  background-color: #735557;
+}
+
 @media (min-width: 768px) {
-  .recipe-form-container fieldset {
+  .recipe-form-container fieldset:not(.inline-forms, .mini-form) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
   }
 
-  .recipe-form-container fieldset > legend {
+  .recipe-form-container fieldset:not(.inline-forms, .mini-form) > legend {
     grid-column: 1 / -1;
   }
 
-  .recipe-form-container fieldset:nth-child(2) {
+  .recipe-form-container fieldset:nth-child(2):not(.inline-forms, .mini-form) {
     grid-template-columns: 1fr;
+  }
+
+  .inline-forms {
+    display: block;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
   }
 }

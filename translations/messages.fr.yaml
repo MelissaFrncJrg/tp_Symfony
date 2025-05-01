@@ -41,16 +41,16 @@ recipe.form.title: Titre de la recette
 recipe.form.description: Description
 recipe.form.origin: Origine
 recipe.form.origin.placeholder: Sélectionnez une origine...
-recipe.form.tags: Tags
 recipe.form.url_image: Image de le recette (url)
 recipe.form.ingredients: Ingrédients
 recipe.steps: Étapes
 recipe.cooking_time: Temps de cuisson (minutes)
 recipe.form.update: Mettre à jour
 recipe.form.cancel: Annuler
+recipe.form.tags_multi: Tags (sélection multiple avec Ctrl ou ⌘)
+existing.tag.error: Ce tag existe déjà
 recipe.origin: Origine
 recipe.origin.none: Non renseignée
-recipe.tags: Tags
 recipe.tags.none: Aucun tag associé
 recipe.back: Retour aux recettes
 recipe.new.title: Nouvelle recette
@@ -72,3 +72,13 @@ recipe.error.number_negative: Vous ne pouvez pas entrer un nombre négatif
 recipe.error.ingredients_required: Vous devez ajouter des ingrédients !
 recipe.error.steps_required: Vous devez ajouter des étapes !
 recipe.error.image_invalid: Vous devez ajouter une image au format URL
+
+origin.new.header: Nouvelle origine
+origin.new.title: Créer une  origine
+new.save: Enregistrer
+origin.duplicate.error: Cette origine existe déjà.
+origin.success: Origine ajoutée.
+tag.duplicate.error: Ce tag existe déjà.
+tag.success: Tag ajouté.
+
+tag.new.title: Nouveau tag
