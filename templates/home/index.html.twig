@@ -2,14 +2,13 @@
 
 {% block title %}{{ 'home.title'|trans }}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/home.css') }}">
+{% endblock %}
+
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-
+<div class="home-container">
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">{{ message }}</div>
     {% endfor %}
@@ -17,24 +16,27 @@
         <div class="alert alert-danger">{{ message }}</div>
     {% endfor %}
 
-    {% if app.user %}
-        <h1>{{ 'home.heading.connected'|trans({'%username%': app.user.username}) }}</h1>
-    {% else %}
-        <h1>{{ 'home.heading.guest'|trans }}</h1>
-    {% endif %}
+    <div class="home-header">
+        {% if app.user %}
+            <h1>{{ 'home.heading.connected'|trans({'%username%': app.user.username}) }}</h1>
+        {% else %}
+            <h1>{{ 'home.heading.guest'|trans }}</h1>
+        {% endif %}
+        
+        <h2>{{ 'home.latest'|trans }}</h2>
+    </div>
 
-    <h2>{{ 'home.latest'|trans }}</h2>
-    <ul>
+    <ul class="recipe-list">
         {% for recipe in recipes %}
-            <li>
+            <li class="recipe-item" style="--recipe-image: url('{{ recipe.image }}')">
                 <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}">
                     <h3>{{ recipe.title }}</h3>
-                </a><br>
+                </a>
                 <em>{{ recipe.origin.name|default('') }}</em>
-                {{ recipe.description|u.truncate(80, '...') }}
+                <p>{{ recipe.description|u.truncate(80, '...') }}</p>
             </li>
         {% else %}
-            <li>{{ 'home.empty'|trans }}</li>
+            <li class="no-recipes">{{ 'home.empty'|trans }}</li>
         {% endfor %}
     </ul>
 </div>

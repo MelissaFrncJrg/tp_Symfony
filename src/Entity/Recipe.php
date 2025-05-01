@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 class Recipe
@@ -17,9 +18,18 @@ class Recipe
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'recipe.error.title_required')]
+    #[Assert\Length(
+        max: 100,
+        maxMessage: 'recipe.error.title_max'
+    )]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\Length(
+        max: 1000,
+        maxMessage: 'recipe.error.description_max'
+    )]
     private ?string $description = null;
 
     #[ORM\Column]
@@ -29,16 +39,24 @@ class Recipe
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\PositiveOrZero(message: 'recipe.error.number_negative')]
     private ?int $servings = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\PositiveOrZero(message: 'recipe.error.number_negative')]
     private ?int $cookingTime = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'recipe.error.ingredients_required')]
     private ?string $ingredients = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'recipe.error.steps_required')]
     private ?string $steps = null;
+
+    #[ORM\Column(nullable: true)]
+    #[Assert\Url(message: 'recipe.error.image_invalid')]
+    private ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'recipes')]
     private ?Origin $origin = null;
@@ -203,6 +221,17 @@ class Recipe
     {
         $this->user = $user;
 
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
         return $this;
     }
 

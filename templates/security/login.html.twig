@@ -2,11 +2,13 @@
 
 {% block title %}{{ 'login.title'|trans }}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/auth.css') }}">
+{% endblock %}
+
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+<div class="auth-container">
 
     {% if app.user %}
         <div class="mb-3">
@@ -15,28 +17,44 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">{{ 'login.heading'|trans }}</h1>
+    <h1>{{ 'login.heading'|trans }}</h1>
 
-    <label for="inputEmail">{{ 'login.email'|trans }}</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
-           class="form-control" autocomplete="email" required autofocus>
+    <form method="post">
+        <div class="form-section">
+            <label for="inputEmail">{{ 'login.email'|trans }}</label>
+            <input type="email" name="email" id="inputEmail"
+                   value="{{ last_username }}"
+                   autocomplete="email" required autofocus>
+        </div>
 
-    <label for="inputPassword">{{ 'login.password'|trans }}</label>
-    <input type="password" name="password" id="inputPassword"
-           class="form-control" autocomplete="current-password" required>
+        <div class="form-section">
+            <label for="inputPassword">{{ 'login.password'|trans }}</label>
+            <input type="password" name="password" id="inputPassword"
+                   autocomplete="current-password" required>
+        </div>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
 
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" name="_remember_me"> {{ 'login.remember_me'|trans }}
-        </label>
-    </div>
+        <div>
+            <label>
+                <input type="checkbox" name="_remember_me"> {{ 'login.remember_me'|trans }}
+            </label>
+        </div>
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        {{ 'login.submit'|trans }}
-    </button>
-</form>
+        {% if error %}
+            <div class="alert alert-danger">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+
+        <div class="form-footer">
+            <button class="btn btn-primary" type="submit">
+                {{ 'login.submit'|trans }}
+            </button>
+        </div>
+    </form>
+
+</div>
 {% endblock %}

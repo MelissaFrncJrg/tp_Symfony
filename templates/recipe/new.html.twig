@@ -2,13 +2,18 @@
 
 {% block title %}{{ 'recipe.new.title'|trans }}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/recipe-form.css') }}">
+{% endblock %}
+
 {% block body %}
-    <div class="container">
-        <h1>{{ 'recipe.new.heading'|trans }}</h1>
+    <div class="recipe-form-container">
+        <h1 class="recipe-form-title">{{ 'recipe.new.heading'|trans }}</h1>
 
-        {{ form_start(form) }}
+        {{ form_start(form, {'attr': {'class': 'recipe-form'}}) }}
 
-        <fieldset>
+        <fieldset class="general-section">
             <legend>{{ 'recipe.section.general'|trans }}</legend>
             {{ form_row(form.title) }}
             {{ form_row(form.description) }}
@@ -16,19 +21,21 @@
             {{ form_row(form.tags) }}
         </fieldset>
 
-        <fieldset>
+        <fieldset class="preparation-section">
             <legend>{{ 'recipe.section.preparation'|trans }}</legend>
             {{ form_row(form.ingredients) }}
             {{ form_row(form.steps) }}
         </fieldset>
 
-        <fieldset>
+        <fieldset class="details-section">
             <legend>{{ 'recipe.section.details'|trans }}</legend>
             {{ form_row(form.servings) }}
             {{ form_row(form.cookingTime) }}
         </fieldset>
 
-        <button class="btn btn-success" type="submit">{{ 'recipe.form.submit'|trans }}</button>
+        {{ form_row(form.image)}}
+
+        <button class="btn-submit" type="submit">{{ 'recipe.form.submit'|trans }}</button>
         {{ form_end(form) }}
     </div>
 {% endblock %}

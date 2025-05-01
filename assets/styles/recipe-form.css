@@ -1,0 +1,129 @@
+.recipe-form-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: "Montserrat", sans-serif;
+  background-color: #fdfaf8;
+}
+
+.recipe-form-title {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #604652;
+  position: relative;
+}
+
+.recipe-form-title::after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 2px;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #d29f80;
+}
+
+.recipe-form-container fieldset {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  background: #fffaf8;
+  box-shadow: 0 2px 8px rgba(150, 130, 110, 0.08);
+}
+
+.recipe-form-container legend {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  padding: 0 0.5rem;
+  color: #735557;
+  font-size: 1.2rem;
+}
+
+.recipe-form-container .form-row {
+  margin-bottom: 1.5rem;
+}
+
+.recipe-form-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #604652;
+}
+
+.recipe-form-container input[type="text"],
+.recipe-form-container textarea,
+.recipe-form-container select {
+  width: 95%;
+  padding: 0.75rem;
+  border: 1px solid #cabfb4;
+  border-radius: 4px;
+  font-family: "Montserrat", sans-serif;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe-form-container textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.recipe-form-container input[type="text"]:focus,
+.recipe-form-container textarea:focus,
+.recipe-form-container select:focus {
+  outline: none;
+  border-color: #97866a;
+  box-shadow: 0 0 0 3px rgba(151, 134, 106, 0.2);
+}
+
+.recipe-form-container .btn-submit {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  margin: 2rem auto 0;
+  color: #fff;
+  padding: 0.7em 1.7em;
+  font-size: 18px;
+  border-radius: 0.5em;
+  background-color: #735557;
+  border: 1px solid #604652;
+  transition: all 0.3s;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+
+.recipe-form-container .btn-submit:hover {
+  background-color: #7c6f70;
+  border-color: #735557;
+}
+
+.recipe-form .btn-secondary {
+  background-color: #f0e0c0;
+  color: #604652;
+  border: 1px solid #f0e0c0;
+}
+
+.recipe-form .btn-secondary:hover {
+  background-color: #604652 !important;
+  color: #f0e0c0;
+  border: 1px solid #f0e0c0;
+}
+
+@media (min-width: 768px) {
+  .recipe-form-container fieldset {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .recipe-form-container fieldset > legend {
+    grid-column: 1 / -1;
+  }
+
+  .recipe-form-container fieldset:nth-child(2) {
+    grid-template-columns: 1fr;
+  }
+}

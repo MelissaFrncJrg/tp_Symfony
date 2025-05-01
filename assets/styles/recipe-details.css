@@ -1,0 +1,226 @@
+.recipe-detail {
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: "Montserrat", sans-serif;
+  background-color: #fdfaf8;
+  color: #604652;
+}
+
+.recipe-banner {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-bottom: 6px solid #f0e0c0;
+}
+
+.recipe-banner-content {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-banner-content h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #604652;
+}
+
+.recipe-banner-content p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  color: #604652;
+  margin: 0;
+}
+
+.recipe-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+.recipe-section {
+  background-color: #fff;
+  border: 1px solid #cabfb4;
+  border-radius: 8px;
+  padding: 1.5rem;
+  flex: 1;
+  min-width: 280px;
+  box-shadow: 0 2px 6px rgba(150, 130, 110, 0.1);
+}
+
+.checkable-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.checkable-list li {
+  margin-bottom: 0.8rem;
+}
+
+.checkable-list input[type="checkbox"] {
+  margin-right: 0.5rem;
+  transform: scale(1.2);
+}
+
+.recipe-detail h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  position: relative;
+}
+
+.recipe-detail h1::after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 2px;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #d29f80;
+}
+
+.recipe-detail p,
+.recipe-detail pre {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.recipe-detail pre {
+  background-color: #fff;
+  padding: 1rem;
+  border-left: 4px solid #cabfb4;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  box-shadow: 0 2px 6px rgba(100, 80, 60, 0.05);
+}
+
+.recipe-meta {
+  background-color: #fffaf8;
+  border: 1px solid #cabfb4;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(150, 130, 110, 0.08);
+}
+
+.recipe-meta p {
+  margin: 0.5rem 0;
+}
+
+.recipe-section {
+  margin-bottom: 2rem;
+}
+
+.recipe-section h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  color: #735557;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #f0e0c0;
+  padding-bottom: 0.5rem;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #f0e0c0;
+  color: #604652;
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+}
+
+.recipe-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.recipe-actions .btn {
+  font-family: "Montserrat", sans-serif;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.recipe-actions .btn-primary {
+  background-color: #604652;
+  color: #fff;
+  border: 1px solid #604652;
+}
+
+.recipe-actions .btn-primary:hover {
+  background-color: #735557;
+}
+
+.recipe-actions .btn-secondary {
+  background-color: #f0e0c0;
+  color: #604652;
+  border: 1px solid #f0e0c0;
+}
+
+.recipe-actions .btn-secondary:hover {
+  background-color: #e3d1aa;
+}
+
+.checkable-list li:has(input:checked) label {
+  color: #aaa;
+  text-decoration: line-through;
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  user-select: none;
+}
+
+.custom-checkbox input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #fff;
+  border: 2px solid #cabfb4;
+  border-radius: 4px;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-right: 0.6rem;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.custom-checkbox input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: #604652;
+  position: absolute;
+  font-size: 0.9rem;
+  top: -2px;
+  left: 2px;
+}
+
+.checkbox-toggle:checked + .checkable-text {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  color: #999;
+  text-decoration: line-through;
+}

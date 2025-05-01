@@ -38,18 +38,24 @@ class RecipeType extends AbstractType
                 'multiple' => true,
                 'expanded' => false,
             ])
+            ->add('image', TextType::class, [
+                'label' => 'recipe.form.url_image',
+                'required' => false,
+            ])
             ->add('ingredients', TextareaType::class, [
                 'label' => 'recipe.form.ingredients'
             ])
             ->add('steps', TextareaType::class, [
-                'label' => 'recipe.form.steps'
+                'label' => 'recipe.steps'
             ])
             ->add('servings', IntegerType::class, [
-                'label' => 'recipe.form.servings',
+                'attr' => ['min' => 0],
+                'label' => 'recipe.servings',
                 'required' => false,
             ])
             ->add('cookingTime', IntegerType::class, [
-                'label' => 'recipe.form.cooking_time',
+                'attr' => ['min' => 0],
+                'label' => 'recipe.cooking_time',
                 'required' => false,
             ]);
     }

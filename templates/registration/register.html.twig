@@ -2,26 +2,42 @@
 
 {% block title %}{{ 'register.title'|trans }}{% endblock %}
 
-{% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/auth.css') }}">
+{% endblock %}
 
-    <h1>{{ 'register.heading'|trans }}</h1>
+{% block body %}
+    <div class="auth-container">
+        <h1>{{ 'register.heading'|trans }}</h1>
+
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
+
+        {{ form_start(registrationForm) }}
+
+    <div class="form-section">
+        {{ form_label(registrationForm.email, 'register.email'|trans) }}
+        {{ form_widget(registrationForm.email) }}
+    </div>
+
+    <div class="form-section">
+        {{ form_label(registrationForm.username, 'register.username'|trans) }}
+        {{ form_widget(registrationForm.username) }}
+    </div>
+
+    <div class="form-section">
+        {{ form_label(registrationForm.plainPassword, 'register.password'|trans) }}
+        {{ form_widget(registrationForm.plainPassword) }}
+    </div>
+
+    <div class="form-footer">
+        <button type="submit" class="btn btn-primary">{{ 'register.submit'|trans }}</button>
+    </div>
 
     {{ form_errors(registrationForm) }}
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email, {
-            label: 'register.email'|trans
-        }) }}
-        {{ form_row(registrationForm.username, {
-            label: 'register.username'|trans
-        }) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'register.password'|trans
-        }) }}
-
-        <button type="submit" class="btn">{{ 'register.submit'|trans }}</button>
     {{ form_end(registrationForm) }}
+
+    </div>
 {% endblock %}

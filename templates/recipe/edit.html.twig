@@ -1,14 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier la recette{% endblock %}
+{% block title %} {{'recipe.edit.title'|trans}} {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/recipe-form.css') }}">
+{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>Modifier la recette</h1>
+    <div class="recipe-form-container">
 
-        {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <button class="btn btn-primary">{{ 'recipe.form.update'|trans }}</button>
+        <h1 class="recipe-form-title">{{ 'recipe.edit.title'|trans }}</h1>
+
+        {{ form_errors(form) }}
+
+        {{ form_start(form, {'attr': {'class': 'recipe-form'}}) }}
+
+        <fieldset class="general-section">
+            <legend>{{ 'recipe.section.general'|trans }}</legend>
+            {{ form_row(form.title) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.origin) }}
+            {{ form_row(form.tags) }}
+        </fieldset>
+
+        <fieldset class="preparation-section">
+            <legend>{{ 'recipe.section.preparation'|trans }}</legend>
+            {{ form_row(form.ingredients) }}
+            {{ form_row(form.steps) }}
+        </fieldset>
+
+        <fieldset class="details-section">
+            <legend>{{ 'recipe.section.details'|trans }}</legend>
+            {{ form_row(form.servings) }}
+            {{ form_row(form.cookingTime) }}
+        </fieldset>
+
+        <div class="btns-section">
+            <button class="btn-submit">{{ 'recipe.form.update'|trans }}</button>
+            <a href="{{ path('app_recipe_index') }}" class="btn btn-secondary">
+                        {{ 'recipe.form.cancel'|trans }}</a>
+        <div>
         {{ form_end(form) }}
     </div>
 {% endblock %}

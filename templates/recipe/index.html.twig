@@ -2,17 +2,26 @@
 
 {% block title %}{{ 'recipe.index.title'|trans }}{% endblock %}
 
-{% block body %}
-    <h1>{{ 'recipe.index.heading'|trans }}</h1>
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/recipes.css') }}">
+{% endblock %}
 
-    <ul>
+{% block body %}
+<div class="recipe-list-container">
+    <h1 class="recipe-list-title">{{ 'recipe.index.heading'|trans }}</h1>
+
+    <ul class="recipe-list">
         {% for recipe in recipes %}
-            <li>
-                <strong>{{ recipe.title }}</strong><br>
-                {{ recipe.description|u.truncate(100, '...') }}
+            <li class="recipe-item">
+                <a href="{{ path('app_recipe_show', {'id': recipe.id}) }}" class="recipe-link">
+                    <strong class="recipe-title">{{ recipe.title }}</strong><br>
+                    <span class="recipe-description">{{ recipe.description|u.truncate(100, '...') }}</span>
+                </a>
             </li>
         {% else %}
-            <li>{{ 'recipe.index.empty'|trans }}</li>
+            <li class="no-recipes">{{ 'recipe.index.empty'|trans }}</li>
         {% endfor %}
     </ul>
+</div>
 {% endblock %}

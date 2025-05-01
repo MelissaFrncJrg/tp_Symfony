@@ -1,11 +1,11 @@
-title.welcome: "Bienvenue !"
-nav.home: "Accueil"
-nav.recipes: "Recettes"
-nav.add_recipe: "Ajouter une recette"
-nav.logout: "Se déconnecter"
-nav.login: "Se connecter"
-nav.register: "S’inscrire"
-header.user_book: "Le livre de recettes de %username%"
+title.welcome: Bienvenue !
+nav.home: Accueil
+nav.recipes: Recettes
+nav.add_recipe: Ajouter une recette
+nav.logout: Se déconnecter
+nav.login: Se connecter
+nav.register: S’inscrire
+header.user_book: Le livre de recettes de %username%"
 
 login.title: Connexion
 login.logged_in_as: Connecté en tant que %user%
@@ -42,11 +42,12 @@ recipe.form.description: Description
 recipe.form.origin: Origine
 recipe.form.origin.placeholder: Sélectionnez une origine...
 recipe.form.tags: Tags
+recipe.form.url_image: Image de le recette (url)
 recipe.form.ingredients: Ingrédients
-recipe.form.steps: Étapes
-recipe.form.servings: Nombre de personnes
-recipe.form.cooking_time: Temps de cuisson (minutes)
+recipe.steps: Étapes
+recipe.cooking_time: Temps de cuisson (minutes)
 recipe.form.update: Mettre à jour
+recipe.form.cancel: Annuler
 recipe.origin: Origine
 recipe.origin.none: Non renseignée
 recipe.tags: Tags
@@ -61,5 +62,13 @@ recipe.section.details: Détails techniques
 recipe.index.title: Recettes
 recipe.index.heading: Liste des recettes
 recipe.index.empty: Aucune recette trouvée
+recipe.description: Description
+recipe.ingredients: Ingrédients
+recipe.servings: Nombre de personnes
+recipe.edit.title: Modifier la recette
 
-error.recipe.not_owner: "Vous ne pouvez modifier que vos propres recettes."
+recipe.error.title_required: Le titre de la recette est obligatoire
+recipe.error.number_negative: Vous ne pouvez pas entrer un nombre négatif
+recipe.error.ingredients_required: Vous devez ajouter des ingrédients !
+recipe.error.steps_required: Vous devez ajouter des étapes !
+recipe.error.image_invalid: Vous devez ajouter une image au format URL

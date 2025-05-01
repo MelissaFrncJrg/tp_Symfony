@@ -1,28 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ recipe.title }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/recipe-details.css') }}">
+{% endblock %}
+
 {% block body %}
-<div class="recipe-detail">
-    <h1>{{ recipe.title }}</h1>
-    <p>
-        <strong>{{ 'recipe.origin'|trans }} :</strong>
-        {{ recipe.origin.name|default('recipe.origin.none'|trans) }}
-    </p>
+<div class="recipe-banner" style="background-image: url('{{ recipe.image }}');">
+    <div class="recipe-banner-content">
+        <h1>{{ recipe.title }}</h1>
+        <p>{{ recipe.description }}</p>
+    </div>
+</div>
 
-    <p>{{ recipe.description }}</p>
+<div class="recipe-detail container">
 
-    <p>
-        <strong>{{ 'recipe.tags'|trans }} :</strong>
-        {% for tag in recipe.tags %}
-            <span>{{ tag.label }}</span>{% if not loop.last %}, {% endif %}
-        {% else %}
-            {{ 'recipe.tags.none'|trans }}
-        {% endfor %}
-    </p>
+    <div class="recipe-meta">
+        <p><strong>{{ 'recipe.origin'|trans }} :</strong> {{ recipe.origin.name|default('recipe.origin.none'|trans) }}</p>
+        <p><strong>{{ 'recipe.servings'|trans }} :</strong> {{ recipe.servings ?? '—' }}</p>
+        <p><strong>{{ 'recipe.cooking_time'|trans }} :</strong> {{ recipe.cookingTime ?? '—' }} minutes</p>
+        <p>
+            <strong>{{ 'recipe.tags'|trans }} :</strong>
+            {% for tag in recipe.tags %}
+                <span class="tag">{{ tag.label }}</span>
+            {% else %}
+                {{ 'recipe.tags.none'|trans }}
+            {% endfor %}
+        </p>
+    </div>
 
-    <a href="{{ path('app_recipe_index') }}">← {{ 'recipe.back'|trans }}</a>
+    <div class="recipe-columns">
+        <div class="recipe-section">
+            <h2>{{ 'recipe.ingredients'|trans }}</h2>
+            <ul class="checkable-list">
+                {% for ingredient in recipe.ingredients|split('\n') %}
+                    {% if ingredient is not empty %}
+                        <li>
+                            <label class="custom-checkbox">
+                                <input type="checkbox" class="checkbox-toggle">
+                                <span class="checkable-text">{{ ingredient }}</span>
+                            </label>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
 
-    {% if app.user and app.user == recipe.user %}
-        <a class="btn btn-primary" href="{{ path('app_recipe_edit', {'id': recipe.id}) }}">
-            {{ 'recipe.form.update'|trans }}
-        </a>
-    {% endif %}
+        <div class="recipe-section">
+            <h2>{{ 'recipe.steps'|trans }}</h2>
+            <ol class="checkable-list">
+                {% for step in recipe.steps|split('\n') %}
+                    {% if step is not empty %}
+                        <li>
+                            <label class="custom-checkbox">
+                            <input type="checkbox" class="checkbox-toggle">
+                            <span class="checkable-text">{{ step }}</span>
+                        </label>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+
+    <div class="recipe-actions">
+        <a href="{{ path('app_recipe_index') }}" class="btn btn-secondary">← {{ 'recipe.back'|trans }}</a>
+
+        {% if app.user and app.user == recipe.user %}
+            <a class="btn btn-primary" href="{{ path('app_recipe_edit', {'id': recipe.id}) }}">
+                {{ 'recipe.form.update'|trans }}
+            </a>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}
