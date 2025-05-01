@@ -1,7 +1,7 @@
 compose.yaml
 ###> symfony/framework-bundle ###
 .env
-.end.dev
+.env.dev
 .env.test
 /.env.local
 /.env.local.php
