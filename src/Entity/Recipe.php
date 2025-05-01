@@ -59,6 +59,7 @@ class Recipe
     private ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'recipes')]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Origin $origin = null;
 
     /**

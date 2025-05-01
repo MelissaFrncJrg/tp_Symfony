@@ -14,7 +14,7 @@
 
         {{ form_errors(form) }}
 
-        {{ form_start(form, {'attr': {'class': 'recipe-form'}}) }}
+        {{ form_start(form, {'attr': {'class': 'recipe-form', 'data-turbo': 'false'}}) }}
 
         <fieldset class="general-section">
             <legend>{{ 'recipe.section.general'|trans }}</legend>

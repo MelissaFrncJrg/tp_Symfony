@@ -54,7 +54,6 @@ final class RecipeController extends AbstractController
             /** @var Recipe $recipe */
             $recipe = $form->getData();
 
-            $recipe->setUser($user);
             $recipe->setCreatedAt(new \DateTimeImmutable());
             $recipe->setUpdatedAt(new \DateTimeImmutable());
 
@@ -70,7 +69,7 @@ final class RecipeController extends AbstractController
 
     #[Route('/recipe/{id}/edit', name: 'app_recipe_edit')]
     public function edit(Recipe $recipe, Request $request, EntityManagerInterface $em, TranslatorInterface $translator): Response
-{
+    {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
             if ($recipe->getUser() !== $this->getUser()) {

@@ -18,7 +18,7 @@
 <div class="recipe-detail container">
 
     <div class="recipe-meta">
-        <p><strong>{{ 'recipe.origin'|trans }} :</strong> {{ recipe.origin.name|default('recipe.origin.none'|trans) }}</p>
+        <p><strong>{{ 'recipe.origin'|trans }} :</strong> {{ recipe.origin.country|default('recipe.origin.none'|trans) }}</p>
         <p><strong>{{ 'recipe.servings'|trans }} :</strong> {{ recipe.servings ?? '—' }}</p>
         <p><strong>{{ 'recipe.cooking_time'|trans }} :</strong> {{ recipe.cookingTime ?? '—' }} minutes</p>
         <p>

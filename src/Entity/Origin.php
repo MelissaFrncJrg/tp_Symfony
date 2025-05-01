@@ -24,9 +24,6 @@ class Origin
     #[ORM\OneToMany(targetEntity: Recipe::class, mappedBy: 'origin')]
     private Collection $recipes;
 
-    #[ORM\ManyToOne(inversedBy: 'origins')]
-    private ?User $user = null;
-
     #[ORM\Column]
     private ?bool $isPublic = null;
 
@@ -82,18 +79,6 @@ class Origin
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): static
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     public function isPublic(): ?bool
     {
         return $this->isPublic;
@@ -108,7 +93,7 @@ class Origin
 
     public function __toString(): string
     {
-        return $this->label ?? '';
+        return $this->country ?? '';
     }
 
 }
