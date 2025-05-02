@@ -129,6 +129,13 @@ select[multiple] option {
   padding: 0.5rem;
 }
 
+select[multiple] option:checked {
+  background-color: #ecdcd6;
+  color: #443135;
+  border-radius: 0.5rem;
+  margin: 0.2rem;
+}
+
 .form-inline-field {
   flex: 1;
 }

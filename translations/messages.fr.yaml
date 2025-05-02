@@ -50,6 +50,7 @@ recipe.form.origin: Origine
 recipe.form.origin.placeholder: Sélectionnez une origine...
 recipe.form.url_image: Image de le recette (url)
 recipe.form.ingredients: Ingrédients
+recipe.tags: Tags
 recipe.steps: Étapes
 recipe.cooking_time: Temps de cuisson (minutes)
 recipe.form.update: Mettre à jour
