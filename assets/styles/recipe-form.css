@@ -196,6 +196,25 @@ select[multiple] option {
   background-color: #735557;
 }
 
+.alert {
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 4px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.alert-success {
+  background-color: #f4f8f0;
+  color: #3f713f;
+  border-left: 3px solid #3f713f;
+}
+
+.alert-danger {
+  background-color: #fff2f2;
+  color: #944545;
+  border-left: 3px solid #944545;
+}
+
 @media (min-width: 768px) {
   .recipe-form-container fieldset:not(.inline-forms, .mini-form) {
     display: grid;
