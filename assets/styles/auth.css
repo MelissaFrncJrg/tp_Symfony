@@ -86,8 +86,8 @@ form input[type="password"]:focus {
   display: flex;
   flex-direction: row;
   justify-content: end;
-  margin: 2rem;
-  padding: 0.5rem;
+  margin: 1rem;
+  padding: 0.1rem;
 }
 
 .alert-danger {
@@ -95,4 +95,12 @@ form input[type="password"]:focus {
   color: #944545;
   border-left: 3px solid #944545;
   border-radius: 0.8rem;
+}
+
+.alert-danger li {
+  margin-right: 0.8rem;
+}
+
+.alert-danger li::marker {
+  content: none;
 }
