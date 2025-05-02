@@ -33,6 +33,7 @@ final class TagFactory extends PersistentProxyObjectFactory
     {
         return [
             'label' => self::faker()->text(100),
+            'isPublic' => self::faker()->boolean(),
         ];
     }
 

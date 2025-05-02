@@ -2,13 +2,13 @@
 
 namespace App\Factory;
 
-use App\Entity\Origin;
+use App\Entity\User;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 
 /**
- * @extends PersistentProxyObjectFactory<Origin>
+ * @extends PersistentProxyObjectFactory<User>
  */
-final class OriginFactory extends PersistentProxyObjectFactory
+final class UserFactory extends PersistentProxyObjectFactory
 {
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
@@ -21,7 +21,7 @@ final class OriginFactory extends PersistentProxyObjectFactory
 
     public static function class(): string
     {
-        return Origin::class;
+        return User::class;
     }
 
     /**
@@ -32,8 +32,11 @@ final class OriginFactory extends PersistentProxyObjectFactory
     protected function defaults(): array|callable
     {
         return [
-            'country' => self::faker()->text(100),
-            'isPublic' => self::faker()->boolean(),
+            'email' => self::faker()->text(180),
+            'isVerified' => self::faker()->boolean(),
+            'password' => self::faker()->text(),
+            'roles' => [],
+            'username' => self::faker()->text(100),
         ];
     }
 
@@ -43,7 +46,7 @@ final class OriginFactory extends PersistentProxyObjectFactory
     protected function initialize(): static
     {
         return $this
-            // ->afterInstantiate(function(Origin $origin): void {})
+            // ->afterInstantiate(function(User $user): void {})
         ;
     }
 }
