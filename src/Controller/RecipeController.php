@@ -105,7 +105,7 @@ final class RecipeController extends AbstractController
             $em->persist($recipe);
             $em->flush();
 
-            return $this->redirectToRoute('app_recipe_index');
+            return $this->redirectToRoute('app_recipe_show', ['id' => $recipe->getId()]);
         }
 
         return $this->render('recipe/new.html.twig', [
